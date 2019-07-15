@@ -15,6 +15,7 @@ const arr = bubbleSorter.array;
 // bubblesorter.sort();
 const button = document.getElementById("begin");
 let cycleInterval;
+
 button.addEventListener("click", () => {
   showIteration();
   beginCycle();
@@ -24,18 +25,14 @@ button.addEventListener("click", () => {
 let i = 0;
 let needToSwap = false;
 let completedIterations = 0;
+
 function beginCycle() {
-  if (i > 0) {
-    const previousBoxId = `box${i}`;
-    clearComparisonBox(previousBoxId);
-  }
+  clearComparisonBox();
   if (needToSwap) {
-    showSwap(i - 1, i);
-    needToSwap = false;
+    showSwap();
   }
   if (i < arr.length - 1) {
-    const boxId = "box" + (i + 1);
-    showComparison(i, i + 1, boxId);
+    showComparison();
     i++;
   } else if (completedIterations < arr.length) {
     i = 0;
@@ -46,34 +43,38 @@ function beginCycle() {
   }
 }
 
+function clearComparisonBox() {
+  if (i > 0) {
+    const boxId = `box${i}`;
+    const box = document.getElementById(boxId);
+    box.innerText = "";
+  }
+}
+
+function showSwap() {
+  const firstId = `item${i - 1}`;
+  const secondId = `item${i}`;
+  document.getElementById(firstId).innerText = arr[i];
+  document.getElementById(secondId).innerText = arr[i - 1];
+  bubbleSorter.swap(i - 1, i);
+  needToSwap = false;
+}
+
+function showComparison() {
+  const item1 = arr[i];
+  const item2 = arr[i + 1];
+  const boxId = "box" + (i + 1);
+  const string = `${item1} < ${item2}`;
+  document.getElementById(boxId).innerHTML = "<h1>" + string + "</h1>";
+  if (item1 > item2) {
+    needToSwap = true;
+  }
+}
+
 function showIteration() {
   if (completedIterations < arr.length) {
     const element = document.getElementById("iteration");
     const string = "Iteration " + (completedIterations + 1);
     element.innerText = string;
   }
-}
-
-function showComparison(index1, index2, boxId) {
-  const item1 = arr[index1];
-  const item2 = arr[index2];
-  const box = document.getElementById(boxId);
-  const string = `${item1} < ${item2}`;
-  box.innerHTML = "<h1>" + string + "</h1>";
-  if (item1 > item2) {
-    needToSwap = true;
-  }
-}
-
-function showSwap(index1, index2) {
-  const firstId = `item${index1}`;
-  const secondId = `item${index2}`;
-  document.getElementById(firstId).innerText = arr[index2];
-  document.getElementById(secondId).innerText = arr[index1];
-  bubbleSorter.swap(index1, index2);
-}
-
-function clearComparisonBox(boxId) {
-  const box = document.getElementById(boxId);
-  box.innerText = "";
 }
