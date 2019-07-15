@@ -28,7 +28,9 @@ beginButton.addEventListener("click", () => {
 
 endButton.addEventListener("click", endIllustration);
 restartButton.addEventListener("click", restartIllustration);
-
+//add red circles and arrows, etc.
+//make sure numbers go back to original position after resetting, or finishing animation
+//pick better numbers for array. these sort too fast
 let i = 0;
 let needToSwap = false;
 let completedIterations = 0;
@@ -55,8 +57,8 @@ function updateIteration() {
 function restartIllustration() {
   clearInterval(cycleInterval);
   clearComparisonBox();
-  updateIteration();
   reset();
+  updateIteration();
   cycleInterval = setInterval(beginCycle, 1000);
 }
 

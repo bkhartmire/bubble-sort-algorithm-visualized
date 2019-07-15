@@ -1,6 +1,6 @@
 body {
-  background-image: url("../images/computer.jpg");
-  background-size: 150% 150%;
+  /* background-image: url("../images/computer.jpg");
+  background-size: 150% 150%; */
 }
 
 button {
@@ -68,8 +68,8 @@ button:hover {
 h1 {
   font-size: 3em;
   text-align: center;
-  -webkit-text-stroke-color: white;
-  -webkit-text-stroke-width: 0.5px;
+  /* -webkit-text-stroke-color: white;
+  -webkit-text-stroke-width: 0.75px; */
 }
 
 div {
