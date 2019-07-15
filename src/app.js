@@ -47,9 +47,11 @@ function beginCycle() {
 }
 
 function showIteration() {
-  const element = document.getElementById("iteration");
-  const string = "Iteration " + (completedIterations + 1);
-  element.innerText = string;
+  if (completedIterations < arr.length) {
+    const element = document.getElementById("iteration");
+    const string = "Iteration " + (completedIterations + 1);
+    element.innerText = string;
+  }
 }
 
 function showComparison(index1, index2, boxId) {
@@ -75,30 +77,3 @@ function clearComparisonBox(boxId) {
   const box = document.getElementById(boxId);
   box.innerText = "";
 }
-
-// function createCheesyTitle(slogan) {
-//   const container = document.createElement("h1");
-//   const textNode = document.createTextNode(slogan);
-//   container.appendChild(textNode);
-//   return container;
-// }
-
-// const title = createCheesyTitle("Re-Engineer Yourself");
-// document.getElementById("title").appendChild(title);
-
-/*
-    An simple example of how you can make your project a bit more
-    interactive, if you would like.
-
-    In our `index.html` page, we have a short form.
-    Here is the code that talks to it.
-  */
-// function changeTitle(event) {
-//   event.preventDefault();
-//   console.log("What is an event?", event);
-// }
-
-// const form = document.querySelector("form");
-// document.addEventListener("DOMContentLoaded", () => {
-//   form.onsubmit = changeTitle;
-// });
