@@ -13,18 +13,66 @@ const bubbleSorter = new BubbleSort([12, 2, 6, 4, 8]);
 const arr = bubbleSorter.array;
 // let visualizationComplete = false;
 // bubblesorter.sort();
-const button = document.getElementById("begin");
+const beginButton = document.getElementById("begin");
+const restartButton = document.getElementById("restart");
+const endButton = document.getElementById("end");
+const iteration = document.getElementById("iteration");
 let cycleInterval;
 
-button.addEventListener("click", () => {
-  showIteration();
+beginButton.addEventListener("click", () => {
+  showEndRestartButtons();
+  updateIteration();
   beginCycle();
   cycleInterval = setInterval(beginCycle, 1000);
 });
 
+endButton.addEventListener("click", endIllustration);
+restartButton.addEventListener("click", restartIllustration);
+
 let i = 0;
 let needToSwap = false;
 let completedIterations = 0;
+
+function showEndRestartButtons() {
+  beginButton.style.display = "none";
+  restartButton.style.display = "inline-block";
+  endButton.style.display = "inline-block";
+}
+
+function showBeginButton() {
+  beginButton.style.display = "inline-block";
+  restartButton.style.display = "none";
+  endButton.style.display = "none";
+}
+
+function updateIteration() {
+  if (completedIterations < arr.length) {
+    const string = "Iteration " + (completedIterations + 1);
+    iteration.innerText = string;
+  }
+}
+
+function restartIllustration() {
+  clearInterval(cycleInterval);
+  clearComparisonBox();
+  updateIteration();
+  reset();
+  cycleInterval = setInterval(beginCycle, 1000);
+}
+
+function endIllustration() {
+  clearInterval(cycleInterval);
+  showBeginButton();
+  clearComparisonBox();
+  reset();
+  iteration.innerText = "";
+}
+
+function reset() {
+  i = 0;
+  needToSwap = false;
+  completedIterations = 0;
+}
 
 function beginCycle() {
   clearComparisonBox();
@@ -32,14 +80,14 @@ function beginCycle() {
     showSwap();
   }
   if (completedIterations === arr.length) {
-    clearInterval(cycleInterval);
+    endIllustration();
   } else if (i < arr.length - 1) {
     showComparison();
     i++;
   } else {
     i = 0;
     completedIterations++;
-    showIteration();
+    updateIteration();
   }
 }
 
@@ -68,13 +116,5 @@ function showComparison() {
   document.getElementById(boxId).innerHTML = "<h1>" + string + "</h1>";
   if (item1 > item2) {
     needToSwap = true;
-  }
-}
-
-function showIteration() {
-  if (completedIterations < arr.length) {
-    const element = document.getElementById("iteration");
-    const string = "Iteration " + (completedIterations + 1);
-    element.innerText = string;
   }
 }
