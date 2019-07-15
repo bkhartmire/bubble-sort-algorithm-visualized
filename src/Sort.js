@@ -1,14 +1,10 @@
-class SomeKindOfSort {
+class BubbleSort {
   constructor(array) {
     this.array = array;
   }
   sort() {
     console.log("sort!");
   }
-
-  returnValue(value) {
-    return value;
-  }
 }
 
-module.exports = SomeKindOfSort;
+module.exports = BubbleSort;

@@ -19,7 +19,7 @@ function createCheesyTitle(slogan) {
   return container;
 }
 
-const title = createCheesyTitle(sort.returnValue("Re-Engineer Yourself"));
+const title = createCheesyTitle("Re-Engineer Yourself");
 document.getElementById("title").appendChild(title);
 
 /*
