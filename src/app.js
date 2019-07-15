@@ -4,13 +4,13 @@
 */
 
 // How can we use require here if it's frontend? We can thank webpack.
-const Sort = require("./Sort");
+const BubbleSort = require("./Sort");
 
 // A link to our styles!
 require("./index.css");
 
-const sort = new Sort();
-sort.sort();
+const sort = new BubbleSort();
+// sort.sort();
 
 function createCheesyTitle(slogan) {
   const container = document.createElement("h1");
@@ -31,7 +31,7 @@ document.getElementById("title").appendChild(title);
   */
 function changeTitle(event) {
   event.preventDefault();
-  // console.log('What is an event?', event);
+  console.log("What is an event?", event);
 }
 
 const form = document.querySelector("form");
