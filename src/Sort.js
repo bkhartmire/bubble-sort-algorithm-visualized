@@ -4,14 +4,12 @@ class BubbleSort {
   }
   sort() {
     const arr = this.array;
-    let counter = 0;
-    while (counter < arr.length) {
+    for (let counter = 0; counter < arr.length; counter++) {
       for (let i = 0; i < arr.length - 1; i++) {
         if (arr[i] > arr[i + 1]) {
           this.swap(i, i + 1);
         }
       }
-      counter++;
     }
   }
 
