@@ -19,7 +19,7 @@ let cycleInterval;
 button.addEventListener("click", () => {
   showIteration();
   beginCycle();
-  cycleInterval = setInterval(beginCycle, 3000);
+  cycleInterval = setInterval(beginCycle, 1000);
 });
 
 let i = 0;
@@ -31,15 +31,15 @@ function beginCycle() {
   if (needToSwap) {
     showSwap();
   }
-  if (i < arr.length - 1) {
+  if (completedIterations === arr.length) {
+    clearInterval(cycleInterval);
+  } else if (i < arr.length - 1) {
     showComparison();
     i++;
-  } else if (completedIterations < arr.length) {
+  } else {
     i = 0;
     completedIterations++;
     showIteration();
-  } else {
-    clearInterval(cycleInterval);
   }
 }
 
