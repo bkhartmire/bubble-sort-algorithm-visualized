@@ -93,9 +93,7 @@ function beginCycle() {
 
 function clearComparisonBox() {
   if (i > 0) {
-    const boxId = `box${i}`;
-    const box = document.getElementById(boxId);
-    box.innerText = "";
+    document.getElementById("comparison").innerText = "";
   }
 }
 
@@ -111,9 +109,8 @@ function showSwap() {
 function showComparison() {
   const item1 = arr[i];
   const item2 = arr[i + 1];
-  const boxId = "box" + (i + 1);
   const string = `${item1} < ${item2}`;
-  document.getElementById(boxId).innerHTML = "<h1>" + string + "</h1>";
+  document.getElementById("comparison").innerText = string;
   if (item1 > item2) {
     needToSwap = true;
   }
