@@ -4,10 +4,10 @@ require("./index.css");
 
 const bubbleSorter = new BubbleSort([12, 7, 10, 4, 2]);
 let arr = bubbleSorter.array;
-const original = [...arr];
+// const original = [...arr];
 
 const beginButton = document.getElementById("begin");
-const restartButton = document.getElementById("restart");
+// const restartButton = document.getElementById("restart");
 const iteration = document.getElementById("iteration");
 
 let cycleInterval;
@@ -22,7 +22,6 @@ beginButton.addEventListener("click", () => {
 
 // restartButton.addEventListener("click", restart);
 //restart isn't working...
-//add strikethrough when comparison is false
 
 // function showRestartButton() {
 //   beginButton.style.display = "none";
@@ -82,12 +81,16 @@ function showComparison() {
   addUnderline();
   const item1 = arr[i];
   const item2 = arr[i + 1];
+  const comparison = document.getElementById("comparison");
   const string = `${item1} < ${item2}`;
-  document.getElementById("comparison").innerText = string;
+  comparison.innerText = string;
   if (item1 > item2) {
+    comparison.style.textDecoration = "line-through red";
     needToSwap = true;
     const arrow = document.getElementById(`arrow${i + 1}`);
     arrow.innerHTML = "&#8596;";
+  } else {
+    comparison.style.textDecoration = "none";
   }
 }
 

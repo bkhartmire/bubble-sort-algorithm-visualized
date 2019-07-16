@@ -48,6 +48,10 @@ button:hover {
   padding-top: 50px;
 }
 
+.strikethrough {
+  text-decoration: line-through red;
+}
+
 #array {
   width: 100%;
   height: 150px;
