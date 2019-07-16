@@ -9,7 +9,6 @@ class BubbleSort {
     for (let i = 0; i < arr.length - 1; i++) {
       if (arr[i] > arr[i + 1]) {
         this.swap(i, i + 1);
-        this.sort();
         changesMade = true;
       }
     }

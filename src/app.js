@@ -1,23 +1,16 @@
-/* Example Code
-      The following is just some example code for you to play around with.
-      No need to keep this---it's just some code so you don't feel too lonely.
-*/
-
-// How can we use require here if it's frontend? We can thank webpack.
 const BubbleSort = require("./Sort");
 
-// A link to our styles!
 require("./index.css");
 
 const bubbleSorter = new BubbleSort([12, 7, 10, 4, 2]);
-// bubbleSorter.sort();
-const arr = bubbleSorter.array;
-// let visualizationComplete = false;
+let arr = bubbleSorter.array;
+const original = [...arr];
 
 const beginButton = document.getElementById("begin");
 const restartButton = document.getElementById("restart");
 const endButton = document.getElementById("end");
 const iteration = document.getElementById("iteration");
+
 let cycleInterval;
 
 beginButton.addEventListener("click", () => {
@@ -32,21 +25,10 @@ restartButton.addEventListener("click", restartIllustration);
 //add red circles and arrows, etc.
 //make sure numbers go back to original position after resetting, or finishing animation
 //pick better numbers for array. these sort too fast
-let i = 0;
-let needToSwap = false;
-let completedIterations = 0;
-let changesMade = false;
-
 function showEndRestartButtons() {
   beginButton.style.display = "none";
   restartButton.style.display = "inline-block";
   endButton.style.display = "inline-block";
-}
-
-function showBeginButton() {
-  beginButton.style.display = "inline-block";
-  restartButton.style.display = "none";
-  endButton.style.display = "none";
 }
 
 function updateIteration() {
@@ -57,28 +39,10 @@ function updateIteration() {
   }
 }
 
-function restartIllustration() {
-  clearInterval(cycleInterval);
-  clearComparisonBox();
-  reset();
-  updateIteration();
-  cycleInterval = setInterval(beginCycle, 1000);
-}
-
-function endIllustration() {
-  clearInterval(cycleInterval);
-  showBeginButton();
-  clearComparisonBox();
-  reset();
-  iteration.innerText = "";
-}
-
-function reset() {
-  i = 0;
-  needToSwap = false;
-  completedIterations = 0;
-  changesMade = false;
-}
+let i = 0;
+let needToSwap = false;
+let completedIterations = 0;
+let changesMade = false;
 
 function beginCycle() {
   clearComparisonBox();
@@ -86,11 +50,11 @@ function beginCycle() {
     showSwap();
     changesMade = true;
   }
-  if (i === arr.length - 1 && !changesMade) {
-    endIllustration();
-  } else if (i < arr.length - 1) {
+  if (i < arr.length - 1) {
     showComparison();
     i++;
+  } else if (i === arr.length - 1 && !changesMade) {
+    endIllustration();
   } else {
     i = 0;
     completedIterations++;
@@ -121,4 +85,38 @@ function showComparison() {
   if (item1 > item2) {
     needToSwap = true;
   }
+}
+
+function restartIllustration() {
+  clearInterval(cycleInterval);
+  clearComparisonBox();
+  reset();
+  updateIteration();
+  cycleInterval = setInterval(beginCycle, 1000);
+}
+
+function endIllustration() {
+  clearInterval(cycleInterval);
+  showBeginButton();
+  clearComparisonBox();
+  reset();
+  iteration.innerText = "";
+}
+
+function reset() {
+  i = 0;
+  needToSwap = false;
+  completedIterations = 0;
+  changesMade = false;
+  for (let index = 0; index < original.length; index++) {
+    const h1Id = "item" + index;
+    document.getElementById(h1Id).innerHTML = original[index];
+  }
+  arr = [...original];
+}
+
+function showBeginButton() {
+  beginButton.style.display = "inline-block";
+  restartButton.style.display = "none";
+  endButton.style.display = "none";
 }
