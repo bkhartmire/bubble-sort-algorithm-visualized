@@ -17,7 +17,7 @@ beginButton.addEventListener("click", () => {
   beginButton.style.display = "none";
   updateIteration();
   beginCycle();
-  cycleInterval = setInterval(beginCycle, 1000);
+  cycleInterval = setInterval(beginCycle, 2000);
 });
 
 // restartButton.addEventListener("click", restart);

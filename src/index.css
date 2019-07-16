@@ -1,6 +1,6 @@
 body {
-  background-image: url("../images/computer.jpg");
-  background-size: 200% 200%;
+  background-image: url("../images/brickwall.jpg");
+  background-size: cover;
 }
 
 button {
