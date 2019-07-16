@@ -8,26 +8,26 @@ const original = [...arr];
 
 const beginButton = document.getElementById("begin");
 const restartButton = document.getElementById("restart");
-
 const iteration = document.getElementById("iteration");
 
 let cycleInterval;
 
 beginButton.addEventListener("click", () => {
-  showRestartButton();
+  // showRestartButton();
+  beginButton.style.display = "none";
   updateIteration();
   beginCycle();
   cycleInterval = setInterval(beginCycle, 1000);
 });
 
-restartButton.addEventListener("click", restartIllustration);
+// restartButton.addEventListener("click", restart);
 //restart isn't working...
 //add strikethrough when comparison is false
 
-function showRestartButton() {
-  beginButton.style.display = "none";
-  restartButton.style.display = "inline-block";
-}
+// function showRestartButton() {
+//   beginButton.style.display = "none";
+//   restartButton.style.display = "inline-block";
+// }
 
 function updateIteration() {
   if (completedIterations < arr.length) {
@@ -38,7 +38,6 @@ function updateIteration() {
 }
 
 let i = 0;
-
 let needToSwap = false;
 let completedIterations = 0;
 let changesMade = false;
@@ -110,23 +109,21 @@ function removeUnderlines() {
   element2.classList.remove("underline");
 }
 
-function restartIllustration() {
-  clearInterval(cycleInterval);
-  clearComparisonBox();
-  reset();
-  updateIteration();
-  cycleInterval = setInterval(beginCycle, 1000);
-}
-
-function reset() {
-  removeUnderlines();
-  i = 0;
-  needToSwap = false;
-  completedIterations = 0;
-  changesMade = false;
-  for (let index = 0; index < original.length; index++) {
-    const h1Id = "item" + index;
-    document.getElementById(h1Id).innerHTML = original[index];
-  }
-  arr = [...original];
-}
+// function restart() {
+//   clearInterval(cycleInterval);
+//   clearComparisonBox();
+//   removeUnderlines();
+//   i = 0;
+//   needToSwap = false;
+//   completedIterations = 0;
+//   changesMade = false;
+//   for (let index = 0; index < original.length; index++) {
+//     const h1Id = "item" + index;
+//     document.getElementById(h1Id).innerHTML = original[index];
+//   }
+//   arr = [...original];
+//   console.log('arr: ', arr);
+//   updateIteration();
+//   beginCycle();
+//   cycleInterval = setInterval(beginCycle, 1000);
+// }
