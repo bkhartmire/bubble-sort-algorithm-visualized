@@ -4,29 +4,18 @@ require("./index.css");
 
 const bubbleSorter = new BubbleSort([12, 7, 10, 4, 2]);
 let arr = bubbleSorter.array;
-// const original = [...arr];
 
 const beginButton = document.getElementById("begin");
-// const restartButton = document.getElementById("restart");
 const iteration = document.getElementById("iteration");
 
 let cycleInterval;
 
 beginButton.addEventListener("click", () => {
-  // showRestartButton();
   beginButton.style.display = "none";
   updateIteration();
   beginCycle();
-  cycleInterval = setInterval(beginCycle, 2000);
+  cycleInterval = setInterval(beginCycle, 1500);
 });
-
-// restartButton.addEventListener("click", restart);
-//restart isn't working...
-
-// function showRestartButton() {
-//   beginButton.style.display = "none";
-//   restartButton.style.display = "inline-block";
-// }
 
 function updateIteration() {
   if (completedIterations < arr.length) {
@@ -46,6 +35,7 @@ function beginCycle() {
   if (needToSwap) {
     showSwap();
     changesMade = true;
+    return;
   }
   if (i < arr.length - 1) {
     showComparison();
@@ -111,22 +101,3 @@ function removeUnderlines() {
   element1.classList.remove("underline");
   element2.classList.remove("underline");
 }
-
-// function restart() {
-//   clearInterval(cycleInterval);
-//   clearComparisonBox();
-//   removeUnderlines();
-//   i = 0;
-//   needToSwap = false;
-//   completedIterations = 0;
-//   changesMade = false;
-//   for (let index = 0; index < original.length; index++) {
-//     const h1Id = "item" + index;
-//     document.getElementById(h1Id).innerHTML = original[index];
-//   }
-//   arr = [...original];
-//   console.log('arr: ', arr);
-//   updateIteration();
-//   beginCycle();
-//   cycleInterval = setInterval(beginCycle, 1000);
-// }
