@@ -1,4 +1,4 @@
-const BubbleSort = require("./Sort");
+const BubbleSort = require("./BubbleSort");
 
 require("./index.css");
 

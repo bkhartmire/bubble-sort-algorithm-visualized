@@ -1,7 +1,7 @@
-const BubbleSort = require("../src/Sort");
+const BubbleSort = require("../src/BubbleSort");
 const { expect } = require("chai");
 
-describe("Sort", () => {
+describe("BubbleSort", () => {
   it("should be initialized with an array property", () => {
     const bubbleSort = new BubbleSort([1, 5, 3]);
     expect(bubbleSort.array).to.deep.equal([1, 5, 3]);
