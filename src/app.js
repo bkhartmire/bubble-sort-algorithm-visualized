@@ -10,9 +10,10 @@ const BubbleSort = require("./Sort");
 require("./index.css");
 
 const bubbleSorter = new BubbleSort([12, 7, 10, 4, 2]);
+// bubbleSorter.sort();
 const arr = bubbleSorter.array;
 // let visualizationComplete = false;
-// bubblesorter.sort();
+
 const beginButton = document.getElementById("begin");
 const restartButton = document.getElementById("restart");
 const endButton = document.getElementById("end");
@@ -34,6 +35,7 @@ restartButton.addEventListener("click", restartIllustration);
 let i = 0;
 let needToSwap = false;
 let completedIterations = 0;
+let changesMade = false;
 
 function showEndRestartButtons() {
   beginButton.style.display = "none";
@@ -51,6 +53,7 @@ function updateIteration() {
   if (completedIterations < arr.length) {
     const string = "Iteration " + (completedIterations + 1);
     iteration.innerText = string;
+    changesMade = false;
   }
 }
 
@@ -74,14 +77,16 @@ function reset() {
   i = 0;
   needToSwap = false;
   completedIterations = 0;
+  changesMade = false;
 }
 
 function beginCycle() {
   clearComparisonBox();
   if (needToSwap) {
     showSwap();
+    changesMade = true;
   }
-  if (completedIterations === arr.length) {
+  if (i === arr.length - 1 && !changesMade) {
     endIllustration();
   } else if (i < arr.length - 1) {
     showComparison();
