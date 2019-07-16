@@ -56,6 +56,7 @@ function beginCycle() {
   } else if (i === arr.length - 1 && !changesMade) {
     endIllustration();
   } else {
+    removeUnderlines();
     i = 0;
     completedIterations++;
     updateIteration();
@@ -78,6 +79,7 @@ function showSwap() {
 }
 
 function showComparison() {
+  addUnderline();
   const item1 = arr[i];
   const item2 = arr[i + 1];
   const string = `${item1} < ${item2}`;
@@ -85,6 +87,24 @@ function showComparison() {
   if (item1 > item2) {
     needToSwap = true;
   }
+}
+
+function addUnderline() {
+  if (i > 0) {
+    const previousElement = document.getElementById(`item${i - 1}`);
+    previousElement.classList.remove("underline");
+  }
+  const element1 = document.getElementById(`item${i}`);
+  const element2 = document.getElementById(`item${i + 1}`);
+  element1.className = "underline";
+  element2.className = "underline";
+}
+
+function removeUnderlines() {
+  const element1 = document.getElementById(`item${i}`);
+  const element2 = document.getElementById(`item${i - 1}`);
+  element1.classList.remove("underline");
+  element2.classList.remove("underline");
 }
 
 function restartIllustration() {

@@ -59,10 +59,12 @@ button:hover {
 .element {
   width: 20%;
   height: 150px;
-  /* background-color: #a0e6ed; */
   float: left;
-  /* border: 1px solid white; */
   box-sizing: border-box;
+}
+
+.underline {
+  text-decoration: underline red;
 }
 
 h1 {
