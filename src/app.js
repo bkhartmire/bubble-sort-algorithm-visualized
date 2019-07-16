@@ -124,6 +124,7 @@ function endIllustration() {
 }
 
 function reset() {
+  removeUnderlines();
   i = 0;
   needToSwap = false;
   completedIterations = 0;
