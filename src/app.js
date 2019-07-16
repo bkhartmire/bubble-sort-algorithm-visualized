@@ -9,7 +9,7 @@ const BubbleSort = require("./Sort");
 // A link to our styles!
 require("./index.css");
 
-const bubbleSorter = new BubbleSort([12, 2, 6, 4, 8]);
+const bubbleSorter = new BubbleSort([12, 7, 10, 4, 2]);
 const arr = bubbleSorter.array;
 // let visualizationComplete = false;
 // bubblesorter.sort();
