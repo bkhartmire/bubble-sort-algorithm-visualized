@@ -85,7 +85,7 @@ function showComparison() {
   const string = `${item1} < ${item2}`;
   comparison.innerText = string;
   if (item1 > item2) {
-    comparison.style.textDecoration = "line-through red";
+    comparison.style.textDecoration = "line-through rgba(255, 0, 0, 0.5)";
     needToSwap = true;
     const arrow = document.getElementById(`arrow${i + 1}`);
     arrow.innerHTML = "&#8596;";
