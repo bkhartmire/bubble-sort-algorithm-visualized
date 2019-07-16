@@ -8,27 +8,25 @@ const original = [...arr];
 
 const beginButton = document.getElementById("begin");
 const restartButton = document.getElementById("restart");
-const endButton = document.getElementById("end");
+
 const iteration = document.getElementById("iteration");
 
 let cycleInterval;
 
 beginButton.addEventListener("click", () => {
-  showEndRestartButtons();
+  showRestartButton();
   updateIteration();
   beginCycle();
   cycleInterval = setInterval(beginCycle, 1000);
 });
 
-endButton.addEventListener("click", endIllustration);
 restartButton.addEventListener("click", restartIllustration);
-//add red circles and arrows, etc.
-//make sure numbers go back to original position after resetting, or finishing animation
-//pick better numbers for array. these sort too fast
-function showEndRestartButtons() {
+//restart isn't working...
+//add strikethrough when comparison is false
+
+function showRestartButton() {
   beginButton.style.display = "none";
   restartButton.style.display = "inline-block";
-  endButton.style.display = "inline-block";
 }
 
 function updateIteration() {
@@ -40,6 +38,7 @@ function updateIteration() {
 }
 
 let i = 0;
+
 let needToSwap = false;
 let completedIterations = 0;
 let changesMade = false;
@@ -54,7 +53,8 @@ function beginCycle() {
     showComparison();
     i++;
   } else if (i === arr.length - 1 && !changesMade) {
-    endIllustration();
+    removeUnderlines();
+    clearInterval(cycleInterval);
   } else {
     removeUnderlines();
     i = 0;
@@ -66,6 +66,7 @@ function beginCycle() {
 function clearComparisonBox() {
   if (i > 0) {
     document.getElementById("comparison").innerText = "";
+    document.getElementById(`arrow${i}`).innerHTML = "";
   }
 }
 
@@ -86,6 +87,8 @@ function showComparison() {
   document.getElementById("comparison").innerText = string;
   if (item1 > item2) {
     needToSwap = true;
+    const arrow = document.getElementById(`arrow${i + 1}`);
+    arrow.innerHTML = "&#8596;";
   }
 }
 
@@ -115,14 +118,6 @@ function restartIllustration() {
   cycleInterval = setInterval(beginCycle, 1000);
 }
 
-function endIllustration() {
-  clearInterval(cycleInterval);
-  showBeginButton();
-  clearComparisonBox();
-  reset();
-  iteration.innerText = "";
-}
-
 function reset() {
   removeUnderlines();
   i = 0;
@@ -134,10 +129,4 @@ function reset() {
     document.getElementById(h1Id).innerHTML = original[index];
   }
   arr = [...original];
-}
-
-function showBeginButton() {
-  beginButton.style.display = "inline-block";
-  restartButton.style.display = "none";
-  endButton.style.display = "none";
 }
